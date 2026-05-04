@@ -5,7 +5,8 @@ from snowflake.snowpark.functions import (col)
 # Write directly to the app
 st.title(f"Order app :cup_with_straw:")
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 
 name_on_order = st.text_input("Name on Smoothie:")
